@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#101510">
+  <meta name="description" content="Minecraft Việt Nam - góc nhỏ dành cho cộng đồng yêu thích Minecraft.">
+  <title>Minecraft Việt Nam | Cộng đồng sáng tạo</title>
+  <style>
+    :root {
+      --bg: #101510;
+      --panel: #19231b;
+      --panel2: #202d22;
+      --green: #70d879;
+      --green2: #a2f0a5;
+      --text: #f2f7f1;
+      --muted: #a9b7aa;
+      --line: rgba(180, 220, 180, .15);
+      --shadow: 0 18px 50px rgba(0,0,0,.28);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 85% 5%, rgba(79,160,83,.17), transparent 27rem),
+        radial-gradient(circle at 5% 35%, rgba(64,120,71,.12), transparent 25rem),
+        var(--bg);
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      line-height: 1.6;
+    }
+    a { color: inherit; text-decoration: none; }
+    .wrap { width: min(1100px, calc(100% - 36px)); margin: auto; }
+    header {
+      position: sticky; top: 0; z-index: 10;
+      background: rgba(16,21,16,.88);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav { min-height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 18px; }
+    .brand { display: flex; align-items: center; gap: 11px; font-weight: 850; letter-spacing: .2px; }
+    .cube {
+      width: 39px; height: 39px; display: grid; place-items: center;
+      border-radius: 10px; color: #102012; font-size: 22px;
+      background: linear-gradient(145deg, #a6f3a2, #46b957);
+      box-shadow: 0 6px 22px rgba(88,204,98,.25);
+    }
+    .navlinks { display: flex; align-items: center; gap: 25px; color: var(--muted); font-size: 14px; }
+    .navlinks a:hover { color: var(--green2); }
+    .menu-btn { display: none; border: 1px solid var(--line); background: var(--panel); color: var(--text); padding: 8px 11px; border-radius: 9px; }
+    .hero { padding: 82px 0 66px; display: grid; grid-template-columns: 1.2fr .8fr; align-items: center; gap: 42px; }
+    .eyebrow { color: var(--green2); text-transform: uppercase; letter-spacing: 2px; font-size: 12px; font-weight: 800; }
+    h1 { font-size: clamp(38px, 6vw, 66px); line-height: 1.06; letter-spacing: -2px; margin: 14px 0 20px; }
+    h1 span { color: var(--green); }
+    .lead { max-width: 590px; color: var(--muted); font-size: 17px; }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; border-radius: 11px; padding: 12px 18px; font-weight: 750; border: 1px solid var(--line); transition: .2s; }
+    .btn.primary { background: var(--green); color: #102012; border-color: var(--green); }
+    .btn.secondary { background: var(--panel); color: var(--text); }
+    .btn:hover { transform: translateY(-2px); filter: brightness(1.08); }
+    .pixel-scene {
+      min-height: 300px; border: 1px solid var(--line); border-radius: 24px; overflow: hidden;
+      background: linear-gradient(180deg, #263f32 0%, #1c3025 48%, #172219 48%, #172219 100%);
+      box-shadow: var(--shadow); position: relative; display: grid; place-items: center;
+    }
+    .pixel-scene:before {
+      content: ""; position: absolute; inset: 48% 0 0;
+      background: repeating-linear-gradient(90deg, transparent 0 38px, rgba(0,0,0,.12) 38px 40px),
+                  repeating-linear-gradient(0deg, transparent 0 38px, rgba(0,0,0,.12) 38px 40px);
+    }
+    .sun { position: absolute; width: 82px; height: 82px; border-radius: 8px; background: #d9e98b; top: 42px; right: 55px; box-shadow: 0 0 60px rgba(217,233,139,.2); }
+    .mountain { position: absolute; bottom: 42%; width: 180px; height: 130px; background: #345d3d; transform: rotate(45deg); }
+    .mountain.one { left: 3%; bottom: 38%; }
+    .mountain.two { right: 4%; width: 220px; height: 160px; background: #294c35; }
+    .grass { position: absolute; bottom: 0; height: 31%; width: 100%; background: repeating-linear-gradient(90deg, #315d35 0 38px, #294f30 38px 76px); }
+    .pixel-title { position: relative; z-index: 2; text-align: center; text-shadow: 0 4px 15px #102012; }
+    .pixel-title strong { display: block; font-size: clamp(28px, 4vw, 42px); letter-spacing: 1px; }
+    .pixel-title small { color: #d5ead0; }
+    section { padding: 48px 0; }
+    .section-head { display: flex; align-items: end; justify-content: space-between; gap: 20px; margin-bottom: 22px; }
+    h2 { font-size: clamp(25px, 3vw, 34px); margin: 0; letter-spacing: -.7px; }
+    .section-head p { color: var(--muted); margin: 5px 0 0; }
+    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .card { background: linear-gradient(145deg, var(--panel2), var(--panel)); border: 1px solid var(--line); border-radius: 16px; padding: 22px; box-shadow: 0 10px 30px rgba(0,0,0,.12); }
+    .card .icon { font-size: 27px; }
+    .card h3 { margin: 10px 0 5px; font-size: 18px; }
+    .card p { color: var(--muted); margin: 0; font-size: 14px; }
+    .members { display: grid; grid-template-columns: repeat(4, 1fr); gap: 13px; }
+    .member { text-align: center; padding: 18px 10px; background: var(--panel); border: 1px solid var(--line); border-radius: 14px; }
+    .avatar { width: 52px; height: 52px; display: grid; place-items: center; margin: 0 auto 9px; border-radius: 13px; background: #2d4d32; font-size: 25px; }
+    .member strong { display: block; }
+    .member small { color: var(--muted); }
+    .notice { border: 1px solid rgba(112,216,121,.28); background: rgba(112,216,121,.08); border-radius: 16px; padding: 22px; color: #d9eed9; }
+    footer { margin-top: 35px; padding: 28px 0; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; }
+    footer .foot { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+    @media (max-width: 760px) {
+      .hero { grid-template-columns: 1fr; padding: 55px 0 38px; gap: 28px; }
+      .pixel-scene { min-height: 230px; }
+      .grid { grid-template-columns: 1fr; }
+      .members { grid-template-columns: repeat(2, 1fr); }
+      .navlinks { display: none; position: absolute; top: 72px; left: 0; right: 0; padding: 18px; background: #141c15; border-bottom: 1px solid var(--line); flex-direction: column; align-items: flex-start; }
+      .navlinks.open { display: flex; }
+      .menu-btn { display: block; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap nav">
+      <a class="brand" href="#home"><span class="cube">⛏</span><span>MINECRAFT VIỆT NAM</span></a>
+      <button class="menu-btn" id="menuBtn" aria-label="Mở menu">☰</button>
+      <nav class="navlinks" id="navlinks">
+        <a href="#home">Trang chủ</a>
+        <a href="#about">Giới thiệu</a>
+        <a href="#activities">Hoạt động</a>
+        <a href="#team">Nhóm 7 người</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero" id="home">
+      <div>
+        <div class="eyebrow">⛏ Khám phá · Xây dựng · Kết nối</div>
+        <h1>Thế giới khối vuông,<br><span>ý tưởng không giới hạn.</span></h1>
+        <p class="lead">Chào mừng bạn đến với Minecraft Việt Nam — nơi chia sẻ công trình sáng tạo, cuộc phiêu lưu và niềm vui chơi Minecraft cùng bạn bè.</p>
+        <div class="actions">
+          <a class="btn primary" href="#activities">Khám phá ngay <span>→</span></a>
+          <a class="btn secondary" href="#team">Gặp nhóm của chúng tôi</a>
+        </div>
+      </div>
+      <div class="pixel-scene" aria-label="Minh họa phong cảnh khối vuông">
+        <div class="sun"></div><div class="mountain one"></div><div class="mountain two"></div><div class="grass"></div>
+        <div class="pixel-title"><strong>MINECRAFT</strong><small>BUILD YOUR OWN WORLD</small></div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="section-head"><div><h2>Chào mừng đến với cộng đồng</h2><p>Một nơi dành cho những người yêu thích Minecraft.</p></div></div>
+      <div class="notice">🌿 <strong>Cùng nhau sáng tạo!</strong> Từ những ngôi nhà nhỏ đến thành phố rộng lớn, mỗi khối vuông đều có thể trở thành một ý tưởng tuyệt vời.</div>
+    </section>
+
+    <section id="activities">
+      <div class="section-head"><div><h2>Có gì ở đây?</h2><p>Những hoạt động thú vị dành cho thành viên.</p></div></div>
+      <div class="grid">
+        <article class="card"><div class="icon">🏡</div><h3>Xây dựng công trình</h3><p>Chia sẻ nhà cửa, lâu đài, thành phố và những thiết kế độc đáo.</p></article>
+        <article class="card"><div class="icon">🧭</div><h3>Phiêu lưu khám phá</h3><p>Khám phá thế giới, tìm tài nguyên và trải nghiệm những vùng đất mới.</p></article>
+        <article class="card"><div class="icon">🤝</div><h3>Chơi cùng bạn bè</h3><p>Kết nối, phối hợp và tạo nên những kỷ niệm vui trong game.</p></article>
+      </div>
+    </section>
+
+    <section id="team">
+      <div class="section-head"><div><h2>Đội hình 7 thành viên</h2><p>Một nhóm nhỏ, thật nhiều ý tưởng lớn.</p></div></div>
+      <div class="members">
+        <div class="member"><div class="avatar">👑</div><strong>Thành viên 01</strong><small>Thủ lĩnh</small></div>
+        <div class="member"><div class="avatar">⚒️</div><strong>Thành viên 02</strong><small>Kiến trúc sư</small></div>
+        <div class="member"><div class="avatar">🧭</div><strong>Thành viên 03</strong><small>Nhà thám hiểm</small></div>
+        <div class="member"><div class="avatar">🌲</div><strong>Thành viên 04</strong><small>Người sinh tồn</small></div>
+        <div class="member"><div class="avatar">💎</div><strong>Thành viên 05</strong><small>Thợ khai khoáng</small></div>
+        <div class="member"><div class="avatar">🛡️</div><strong>Thành viên 06</strong><small>Chiến binh</small></div>
+        <div class="member"><div class="avatar">🔥</div><strong>Thành viên 07</strong><small>Nhà sáng tạo</small></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap foot">
+      <span>© <span id="year"></span> Minecraft Việt Nam.</span>
+      <span>Được tạo bởi cộng đồng yêu Minecraft 💚</span>
+    </div>
+  </footer>
+  <script>
+    const menuBtn = document.getElementById('menuBtn');
+    const navlinks = document.getElementById('navlinks');
+    menuBtn.addEventListener('click', () => navlinks.classList.toggle('open'));
+    navlinks.querySelectorAll('a').forEach(link => link.addEventListener('click', () => navlinks.classList.remove('open')));
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
